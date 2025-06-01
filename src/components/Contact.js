@@ -59,7 +59,7 @@ const Contact = () => {
 
               <div className="social-links">
                 <motion.a
-                  href="mailto:tyler@example.com"
+                  href="mailto:tylerjayp12@gmail.com"
                   className="social-link"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}

@@ -7,10 +7,21 @@ import './About.css';
 const About = () => {
   const [ref, inView] = useInView({ threshold: 0.3 });
 
-  const skills = [
-    'JavaScript', 'React', 'Node.js', 'Python', 'Java', 'C++',
-    'HTML/CSS', 'Git', 'MongoDB', 'SQL', 'AWS', 'Docker'
+  // Tech stack with logo URLs from devicons CDN
+  const techStack = [
+    { name: 'JavaScript', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+    { name: 'React', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+    { name: 'Python', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+    { name: 'C++', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' },
+    { name: 'C', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg' },
+    { name: 'C#', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg' },
+    { name: 'HTML/CSS', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
+    { name: 'Git', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
+    { name: 'SQL', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' }
   ];
+
+  // Duplicate the array for seamless infinite scrolling
+  const duplicatedTechStack = [...techStack, ...techStack, ...techStack];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -43,8 +54,10 @@ const About = () => {
           <div className="about-grid">
             <motion.div className="about-text" variants={itemVariants}>
               <div className="about-card">
-                <Code className="card-icon" />
-                <h3>Passionate Developer</h3>
+                <div className="card-header">
+                  <Code className="card-icon" />
+                  <h3>Passionate Developer</h3>
+                </div>
                 <p>
                   I love creating digital experiences that matter. From web applications 
                   to complex algorithms, I enjoy the process of turning ideas into reality 
@@ -53,8 +66,10 @@ const About = () => {
               </div>
 
               <div className="about-card">
-                <GraduationCap className="card-icon" />
-                <h3>Computer Science Student</h3>
+                <div className="card-header">
+                  <GraduationCap className="card-icon" />
+                  <h3>Computer Science Student</h3>
+                </div>
                 <p>
                   Currently finishing my senior year at Utah Valley University, 
                   where I've developed a strong foundation in software engineering, 
@@ -63,8 +78,10 @@ const About = () => {
               </div>
 
               <div className="about-card">
-                <Heart className="card-icon" />
-                <h3>Problem Solver</h3>
+                <div className="card-header">
+                  <Heart className="card-icon" />
+                  <h3>Problem Solver</h3>
+                </div>
                 <p>
                   I thrive on challenges and love finding creative solutions to complex problems. 
                   Whether it's optimizing performance or designing user-friendly interfaces, 
@@ -75,18 +92,23 @@ const About = () => {
 
             <motion.div className="skills-section" variants={itemVariants}>
               <h3>Technical Skills</h3>
-              <div className="skills-grid">
-                {skills.map((skill, index) => (
-                  <motion.div
-                    key={skill}
-                    className="skill-tag"
-                    variants={itemVariants}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ delay: index * 0.05 }}
-                  >
-                    {skill}
-                  </motion.div>
-                ))}
+              <div className="tech-scroll-container">
+                <div className="tech-scroll-track">
+                  {duplicatedTechStack.map((tech, index) => (
+                    <div key={`${tech.name}-${index}`} className="tech-logo-item">
+                      <img 
+                        src={tech.logo} 
+                        alt={tech.name}
+                        className="tech-logo"
+                        onError={(e) => {
+                          // Fallback if image fails to load
+                          e.target.style.display = 'none';
+                        }}
+                      />
+                      <span className="tech-name">{tech.name}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </div>

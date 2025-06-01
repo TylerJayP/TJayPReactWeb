@@ -28,14 +28,23 @@
   transform: translateY(-5px);
 }
 
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
 .card-icon {
   color: var(--accent-primary);
-  margin-bottom: 1rem;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
 }
 
 .about-card h3 {
   font-size: 1.5rem;
-  margin-bottom: 1rem;
+  margin: 0;
   color: var(--text-primary);
 }
 
@@ -52,6 +61,7 @@
   height: fit-content;
   position: sticky;
   top: 2rem;
+  overflow: hidden;
 }
 
 .skills-section h3 {
@@ -61,26 +71,86 @@
   text-align: center;
 }
 
-.skills-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+/* Scrolling Tech Skills Styles */
+.tech-scroll-container {
+  width: 100%;
+  overflow: hidden;
+  mask: linear-gradient(
+    90deg,
+    transparent,
+    white 20%,
+    white 80%,
+    transparent
+  );
+  -webkit-mask: linear-gradient(
+    90deg,
+    transparent,
+    white 20%,
+    white 80%,
+    transparent
+  );
 }
 
-.skill-tag {
-  background: var(--accent-secondary);
-  color: var(--text-primary);
-  padding: 0.5rem 1rem;
-  border-radius: 25px;
-  font-size: 0.9rem;
-  font-weight: 500;
+.tech-scroll-track {
+  display: flex;
+  animation: scroll 20s linear infinite;
+  width: fit-content;
+  will-change: transform;
+}
+
+.tech-logo-item {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 1.5rem;
+  padding: 1rem;
+  transition: transform 0.3s ease;
+  width: 80px;
+}
+
+.tech-logo-item:hover {
+  transform: scale(1.1);
+}
+
+.tech-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: grayscale(1) opacity(0.7);
   transition: all 0.3s ease;
 }
 
-.skill-tag:hover {
-  background: var(--accent-primary);
-  color: white;
+.tech-logo-item:hover .tech-logo {
+  filter: grayscale(0) opacity(1);
   transform: translateY(-2px);
+}
+
+.tech-name {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% / 3));
+  }
+}
+
+/* Theme-specific adjustments */
+[data-theme="dark"] .tech-logo {
+  filter: grayscale(1) opacity(0.6) brightness(1.2);
+}
+
+[data-theme="dark"] .tech-logo-item:hover .tech-logo {
+  filter: grayscale(0) opacity(1) brightness(1);
 }
 
 @media (max-width: 768px) {
@@ -99,5 +169,32 @@
   
   .about-card {
     padding: 1.5rem;
+  }
+
+  .card-header {
+    gap: 0.75rem;
+  }
+
+  .card-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .about-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .tech-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .tech-logo-item {
+    margin: 0 1rem;
+    width: 60px;
+  }
+
+  .tech-scroll-track {
+    animation-duration: 15s;
   }
 }

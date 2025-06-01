@@ -12,8 +12,41 @@ const Resume = () => {
   };
 
   const handleDownload = () => {
-    // For now, this will just print. In a real app, you'd generate a PDF
-    window.print();
+    // Import html2pdf dynamically
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+    script.onload = () => {
+      const element = document.querySelector('.resume-content');
+      const opt = {
+        margin: [0.5, 0.5, 0.5, 0.5],
+        filename: 'Tyler_Jay_Perkins_Resume.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { 
+          scale: 2,
+          useCORS: true,
+          letterRendering: true
+        },
+        jsPDF: { 
+          unit: 'in', 
+          format: 'letter', 
+          orientation: 'portrait' 
+        },
+        pagebreak: { 
+          mode: ['avoid-all', 'css', 'legacy'],
+          before: '.page-break-before',
+          after: '.page-break-after'
+        }
+      };
+      
+      // Temporarily add PDF-specific classes
+      element.classList.add('pdf-export');
+      
+      window.html2pdf().set(opt).from(element).save().then(() => {
+        // Remove the temporary class
+        element.classList.remove('pdf-export');
+      });
+    };
+    document.head.appendChild(script);
   };
 
   const containerVariants = {
@@ -72,7 +105,9 @@ const Resume = () => {
             <div className="contact-info">
               <div className="contact-item">
                 <Mail size={16} />
-                <span>tylerjayp12@gmail.com</span>
+                <a href="mailto:tylerjayp12@gmail.com" className="contact-link">
+                  tylerjayp12@gmail.com
+                </a>
               </div>
               <div className="contact-item">
                 <Phone size={16} />
@@ -80,11 +115,27 @@ const Resume = () => {
               </div>
               <div className="contact-item">
                 <Linkedin size={16} />
-                <span>LinkedIn</span>
+                <a 
+                  href="https://www.linkedin.com/in/tylerjayperkins/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="contact-link"
+                >
+                  <span className="contact-text-screen">LinkedIn</span>
+                  <span className="contact-text-print">https://www.linkedin.com/in/tylerjayperkins/</span>
+                </a>
               </div>
               <div className="contact-item">
                 <Github size={16} />
-                <span>GitHub</span>
+                <a 
+                  href="https://github.com/TylerJayP" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="contact-link"
+                >
+                  <span className="contact-text-screen">GitHub</span>
+                  <span className="contact-text-print">https://github.com/TylerJayP</span>
+                </a>
               </div>
             </div>
           </motion.header>
@@ -135,9 +186,16 @@ const Resume = () => {
             
             <div className="project-item">
               <h3>Personal Mood Journal Web Application</h3>
-              <div className="project-link">
-                <Github size={14} />
-                <span>Repository: https://github.com/TylerJayP/MoodJournal</span>
+              <div className="project-repository">
+                <strong>Repository: </strong>
+                <a 
+                  href="https://github.com/TylerJayP/MoodJournal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="repo-link"
+                >
+                  https://github.com/TylerJayP/MoodJournal
+                </a>
               </div>
               <ul className="project-details">
                 <li>Developing a responsive mood tracking web application with photo upload capabilities and interactive data visualizations.</li>
