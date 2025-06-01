@@ -212,25 +212,45 @@
     animation-duration: 15s;
   }
 
-  /* Alternative: Static grid for mobile to avoid any scrolling issues */
+  /* Ensure scrolling animation works on all screen sizes */
   @media (max-width: 480px) {
     .tech-scroll-container {
-      mask: none;
-      -webkit-mask: none;
+      /* Keep the mask for the fade effect */
+      mask: linear-gradient(
+        90deg,
+        transparent,
+        white 15%,
+        white 85%,
+        transparent
+      );
+      -webkit-mask: linear-gradient(
+        90deg,
+        transparent,
+        white 15%,
+        white 85%,
+        transparent
+      );
     }
     
     .tech-scroll-track {
-      animation: none;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      width: 100%;
+      /* Keep the animation but make it slower and more contained */
+      animation: scroll 25s linear infinite;
     }
     
     .tech-logo-item {
-      margin: 0;
-      width: auto;
-      min-width: auto;
+      /* Slightly smaller items on very small screens */
+      margin: 0 0.75rem;
+      width: 50px;
+      min-width: 50px;
+    }
+    
+    .tech-logo {
+      width: 32px;
+      height: 32px;
+    }
+    
+    .tech-name {
+      font-size: 0.7rem;
     }
   }
 }
