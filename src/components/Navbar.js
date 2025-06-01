@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import './Navbar.css';
 
@@ -55,28 +55,35 @@ const Navbar = ({ activeSection, setActiveSection }) => {
             ))}
           </div>
         </div>
-
-        <motion.div
-          className={`nav-mobile ${isOpen ? 'open' : ''}`}
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ 
-            opacity: isOpen ? 1 : 0, 
-            height: isOpen ? 'auto' : 0 
-          }}
-          transition={{ duration: 0.3 }}
-        >
-          {navItems.map((item) => (
-            <motion.button
-              key={item}
-              className="nav-link-mobile"
-              whileTap={{ scale: 0.95 }}
-              onClick={() => handleNavClick(item.toLowerCase())}
-            >
-              {item}
-            </motion.button>
-          ))}
-        </motion.div>
       </motion.nav>
+
+      {/* Modern Floating Mobile Menu - appears above hamburger */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="mobile-nav-popup open"
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+          >
+            {navItems.map((item, index) => (
+              <motion.button
+                key={item}
+                className={`nav-link-mobile ${activeSection === item.toLowerCase() ? 'active' : ''}`}
+                onClick={() => handleNavClick(item.toLowerCase())}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.05 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {item}
+              </motion.button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Floating Mobile Hamburger Menu */}
       <motion.button
