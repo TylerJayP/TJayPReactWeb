@@ -1,3 +1,4 @@
+
 .theme-toggle {
   position: fixed;
   top: 2rem;
@@ -13,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1001;
+  z-index: 999;
   transition: all 0.3s ease;
 }
 
@@ -27,6 +28,8 @@
     width: 50px;
     height: 50px;
     top: 1rem;
-    right: 1rem;
+    left: 1rem; /* Move to left side on mobile to avoid hamburger menu */
+    right: auto;
+    z-index: 999; /* Lower than navbar to avoid conflicts */
   }
 }
