@@ -25,64 +25,77 @@ const Navbar = ({ activeSection, setActiveSection }) => {
   const navItems = ['About', 'Projects', 'Resume', 'Contact'];
 
   return (
-    <motion.nav
-      className={`navbar ${scrolled ? 'scrolled' : ''}`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.8 }}
-    >
-      <div className="nav-container">
-        <motion.div
-          className="nav-logo"
-          whileHover={{ scale: 1.05 }}
-          onClick={() => handleNavClick('hero')}
-        >
-          TJP
-        </motion.div>
+    <>
+      <motion.nav
+        className={`navbar ${scrolled ? 'scrolled' : ''}`}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="nav-container">
+          <motion.div
+            className="nav-logo"
+            whileHover={{ scale: 1.05 }}
+            onClick={() => handleNavClick('hero')}
+          >
+            TJP
+          </motion.div>
 
-        <div className="nav-links desktop">
+          <div className="nav-links desktop">
+            {navItems.map((item) => (
+              <motion.button
+                key={item}
+                className={`nav-link ${activeSection === item.toLowerCase() ? 'active' : ''}`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => handleNavClick(item.toLowerCase())}
+              >
+                {item}
+              </motion.button>
+            ))}
+          </div>
+        </div>
+
+        <motion.div
+          className={`nav-mobile ${isOpen ? 'open' : ''}`}
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ 
+            opacity: isOpen ? 1 : 0, 
+            height: isOpen ? 'auto' : 0 
+          }}
+          transition={{ duration: 0.3 }}
+        >
           {navItems.map((item) => (
             <motion.button
               key={item}
-              className={`nav-link ${activeSection === item.toLowerCase() ? 'active' : ''}`}
-              whileHover={{ scale: 1.05 }}
+              className="nav-link-mobile"
               whileTap={{ scale: 0.95 }}
               onClick={() => handleNavClick(item.toLowerCase())}
             >
               {item}
             </motion.button>
           ))}
-        </div>
+        </motion.div>
+      </motion.nav>
 
-        <button
-          className="nav-toggle mobile"
-          onClick={() => setIsOpen(!isOpen)}
+      {/* Floating Mobile Hamburger Menu */}
+      <motion.button
+        className="mobile-hamburger"
+        onClick={() => setIsOpen(!isOpen)}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        initial={{ scale: 0, rotate: -180 }}
+        animate={{ scale: 1, rotate: 0 }}
+        transition={{ duration: 0.5, delay: 1.2 }}
+      >
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      <motion.div
-        className={`nav-mobile ${isOpen ? 'open' : ''}`}
-        initial={{ opacity: 0, height: 0 }}
-        animate={{ 
-          opacity: isOpen ? 1 : 0, 
-          height: isOpen ? 'auto' : 0 
-        }}
-        transition={{ duration: 0.3 }}
-      >
-        {navItems.map((item) => (
-          <motion.button
-            key={item}
-            className="nav-link-mobile"
-            whileTap={{ scale: 0.95 }}
-            onClick={() => handleNavClick(item.toLowerCase())}
-          >
-            {item}
-          </motion.button>
-        ))}
-      </motion.div>
-    </motion.nav>
+        </motion.div>
+      </motion.button>
+    </>
   );
 };
 

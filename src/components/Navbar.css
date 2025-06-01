@@ -120,10 +120,45 @@
   }
   
   .nav-toggle.mobile {
-    display: block;
+    display: none; /* Hide the hamburger from navbar */
   }
   
   .nav-mobile.open {
     display: block;
+  }
+}
+
+/* Floating hamburger menu for mobile */
+.mobile-hamburger {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  background: var(--accent-primary);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  transition: all 0.3s ease;
+}
+
+.mobile-hamburger:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-hamburger:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .mobile-hamburger {
+    display: flex;
   }
 }
