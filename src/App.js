@@ -6,7 +6,6 @@ import About from './components/About';
 import Projects from './components/Projects';
 import Resume from './components/Resume';
 import Contact from './components/Contact';
-import ParticleBackground from './components/ParticleBackground';
 import ThemeToggle from './components/ThemeToggle';
 import { useTheme } from './hooks/useTheme';
 import './styles/App.css';
@@ -32,7 +31,6 @@ function App() {
 
   return (
     <div className={`app ${theme}`}>
-      <ParticleBackground />
       <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
       <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
       
