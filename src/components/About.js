@@ -5,7 +5,7 @@ import { Code, GraduationCap, Heart } from 'lucide-react';
 import './About.css';
 
 const About = () => {
-  const [ref, inView] = useInView({ threshold: 0.3 });
+  const [ref, inView] = useInView({ threshold: 0.1 });
 
   // Tech stack with logo URLs from devicons CDN
   const techStack = [

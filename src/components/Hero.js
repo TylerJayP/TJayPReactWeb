@@ -5,7 +5,7 @@ import { ChevronDown } from 'lucide-react';
 import './Hero.css';
 
 const Hero = () => {
-  const [ref, inView] = useInView({ threshold: 0.3 });
+  const [ref, inView] = useInView({ threshold: 0.1 });
   const [displayText, setDisplayText] = useState('');
   const fullText = 'Tyler Jay Perkins';
 

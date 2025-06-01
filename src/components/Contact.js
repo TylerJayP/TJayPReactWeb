@@ -5,7 +5,7 @@ import { Mail, Linkedin, Github, Send } from 'lucide-react';
 import './Contact.css';
 
 const Contact = () => {
-  const [ref, inView] = useInView({ threshold: 0.3 });
+  const [ref, inView] = useInView({ threshold: 0.1 });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
