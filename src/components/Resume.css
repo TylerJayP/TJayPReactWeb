@@ -2,6 +2,7 @@
   min-height: 100vh;
   padding: 6rem 2rem 2rem;
   background: var(--bg-primary);
+  overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 .resume-actions {
@@ -9,6 +10,7 @@
   justify-content: center;
   gap: 1rem;
   margin-bottom: 2rem;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
 }
 
 .action-button {
@@ -23,6 +25,7 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 .action-button:hover {
@@ -37,6 +40,8 @@
   padding: 3rem;
   border-radius: 15px;
   box-shadow: 0 10px 30px var(--shadow);
+  width: 100%; /* Ensure it doesn't exceed container */
+  overflow-wrap: break-word; /* Handle long words */
 }
 
 .resume-header {
@@ -51,6 +56,7 @@
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 1rem;
+  word-wrap: break-word;
 }
 
 .contact-info {
@@ -58,6 +64,7 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 1.5rem;
+  max-width: 100%; /* Prevent overflow */
 }
 
 .contact-item {
@@ -66,16 +73,21 @@
   gap: 0.5rem;
   color: var(--text-secondary);
   font-size: 0.9rem;
+  min-width: 0; /* Allow flex items to shrink */
+  flex-shrink: 1; /* Allow shrinking */
 }
 
 .contact-item svg {
   color: var(--accent-primary);
+  flex-shrink: 0; /* Keep icons from shrinking */
 }
 
 .contact-link {
   color: var(--accent-primary);
   text-decoration: none;
   transition: color 0.3s ease;
+  word-break: break-all; /* Break long URLs */
+  min-width: 0; /* Allow text to shrink */
 }
 
 .contact-link:hover {
@@ -93,6 +105,7 @@
 
 .resume-section-content {
   margin-bottom: 2.5rem;
+  overflow-wrap: break-word; /* Handle long words */
 }
 
 .section-title {
@@ -117,6 +130,7 @@
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
+  word-wrap: break-word;
 }
 
 .item-details {
@@ -132,27 +146,34 @@
 .company {
   color: var(--text-secondary);
   font-weight: 500;
+  word-wrap: break-word;
+  flex: 1;
+  min-width: 0; /* Allow text to shrink */
 }
 
 .date {
   color: var(--accent-primary);
   font-weight: 500;
   font-size: 0.9rem;
+  flex-shrink: 0; /* Keep dates from shrinking */
+  white-space: nowrap;
 }
 
 .project-repository {
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Changed from center to flex-start */
   gap: 0.5rem;
   color: var(--text-secondary);
   font-size: 0.9rem;
   margin-bottom: 0.75rem;
-  flex-wrap: nowrap;
+  flex-wrap: wrap; /* Allow wrapping */
+  overflow-wrap: break-word;
 }
 
 .project-repository strong {
   color: var(--text-primary);
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .repo-link {
@@ -160,6 +181,9 @@
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
+  word-break: break-all; /* Break long URLs */
+  min-width: 0; /* Allow link to shrink */
+  flex: 1;
 }
 
 .repo-link:hover {
@@ -182,6 +206,7 @@
   margin-bottom: 0.5rem;
   color: var(--text-secondary);
   line-height: 1.6;
+  overflow-wrap: break-word; /* Handle long words */
 }
 
 .achievements li::before,
@@ -198,6 +223,7 @@
   margin-bottom: 0.75rem;
   color: var(--text-secondary);
   line-height: 1.6;
+  overflow-wrap: break-word;
 }
 
 .skills-content strong {
@@ -323,7 +349,7 @@
     flex-direction: row !important;
     align-items: center !important;
     gap: 0.3rem !important;
-    flex-wrap: nowrap !important;
+    flex-wrap: wrap !important;
   }
 
   .project-repository strong {
@@ -335,6 +361,7 @@
     color: #2563eb !important;
     text-decoration: none !important;
     font-weight: normal !important;
+    word-break: break-all !important;
   }
 
   .achievements,
@@ -435,9 +462,21 @@
     gap: 0.75rem;
   }
 
+  .contact-item {
+    justify-content: center;
+    text-align: center;
+  }
+
   .item-details {
     flex-direction: column;
     align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .project-repository {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
   }
 
   .action-button {
