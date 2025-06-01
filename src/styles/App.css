@@ -1,0 +1,17 @@
+.app {
+  min-height: 100vh;
+  position: relative;
+}
+
+.app.light {
+  background-color: var(--bg-primary);
+}
+
+.app.dark {
+  background-color: var(--dark-bg-primary);
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
