@@ -10,10 +10,10 @@ const Projects = () => {
   const projects = [
     {
       title: "Personal Portfolio",
-      description: "A modern, responsive portfolio website built with React and Framer Motion. Features smooth animations, dark mode, and an interactive particle background.",
+      description: "A modern, responsive portfolio website built with React and Framer Motion. Features smooth animations, dark/light theme toggle, interactive navigation, animated tech skills showcase, and downloadable PDF resume functionality.",
       tech: ["React", "Framer Motion", "CSS3", "JavaScript"],
       github: "#",
-      live: "#",
+      live: "https://www.tylerjayp.com/",
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop"
     },
     {
@@ -24,14 +24,14 @@ const Projects = () => {
   live: "https://personalmoodjournal.netlify.app",
   image: "./images/MoodJournalPic.png"
     },
-    {
-      title: "Weather Dashboard",
-      description: "An interactive weather dashboard that displays current conditions and forecasts using multiple weather APIs with beautiful data visualizations.",
-      tech: ["JavaScript", "Chart.js", "REST APIs", "CSS3"],
-      github: "#",
-      live: "#",
-      image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=500&h=300&fit=crop"
-    }
+{
+  title: "Virtual Dyno Pro",
+  description: "A professional automotive dyno analysis tool that processes AccessPort and OBD2 datalog files to generate accurate horsepower and torque curves. Features advanced algorithms for AFR correction, knock retard penalties, atmospheric compensation, and gear-specific calculations calibrated against real dyno results.",
+  tech: ["C# ASP.NET Core", "Entity Framework", "React", "Chart.js", "CSV Processing", "REST APIs"],
+  github: "https://github.com/TylerJayP/VirtualDyno",
+  live: "https://github.com/TylerJayP/VirtualDyno/blob/master/ReadMe.md", 
+  image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=300&fit=crop" 
+}
   ];
 
   const containerVariants = {
