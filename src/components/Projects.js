@@ -17,12 +17,12 @@ const Projects = () => {
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop"
     },
     {
-      title: "Task Management App",
-      description: "A full-stack task management application with user authentication, real-time updates, and drag-and-drop functionality.",
-      tech: ["React", "Node.js", "MongoDB", "Socket.io"],
-      github: "#",
-      live: "#",
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&h=300&fit=crop"
+  title: "Personal Mood Journal",
+  description: "A comprehensive mood tracking application featuring daily journal entries, mood analytics, photo integration, and speech-to-text functionality. Includes visual mood tracking, gratitude journaling, personalized insights, and a calendar view for emotional pattern analysis.",
+  tech: ["React", "React Router", "CSS3", "Local Storage", "Speech-to-Text API", "Canvas API"],
+  github: "https://github.com/TylerJayP/MoodJournal",
+  live: "https://personalmoodjournal.netlify.app",
+  image: "./images/MoodJournalPic.png"
     },
     {
       title: "Weather Dashboard",
